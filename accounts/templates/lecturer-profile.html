@@ -1,0 +1,160 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<!-- x-editor CSS
+		============================================ -->
+<link rel="stylesheet" href="{% static 'css/editor/select2.css' %}">
+<link rel="stylesheet" href="{% static 'css/editor/datetimepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/editor/bootstrap-editable.css' %}">
+<link rel="stylesheet" href="{% static 'css/editor/x-editor-style.css' %}">
+<!-- normalize CSS
+		============================================ -->
+<link rel="stylesheet" href="{% static 'css/data-table/bootstrap-table.css' %}">
+<link rel="stylesheet" href="{% static 'css/data-table/bootstrap-editable.css' %}">
+
+{% endblock %}
+
+{% block head_title %} {{ profile_detail.full_name}} Profile {% endblock %}
+
+{% block content %}
+<!-- Single pro tab review Start-->
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="profile-info-inner">
+                    <div class="profile-img">
+                        <img src="{{profile_detail.image.url}}" alt="" />
+                        <a class="btn btn-info center-block"
+                            href="{% url 'accounts:image_register' profile_detail.id %}">Change picture</a>
+                    </div>
+                    <div class="profile-details-hr">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="address-hr">
+                                    <p><b>Name</b><br /> {{profile_detail.full_name}} </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
+                                    <p><b>Gemder</b><br /> {{profile_detail.gender}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
+                                    <p><b>Department</b><br /> {{profile_detail.dept}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <div class="address-hr">
+                                    <p style="word-wrap: break-word;"><b>Email ID</b><br />
+                                        {{profile_detail.user.email}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
+                                    <p><b>Phone</b><br /> {{profile_detail.phone_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="address-hr">
+                                    <p><b>Address</b><br /> {{profile_detail.address}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
+                    <ul id="myTabedu1" class="tab-review-design">
+                        <li class="active"><a href="#description">Details</a></li>
+                        <!-- <li><a href="#reviews"> Biography</a></li> -->
+                        <li><a href="{% url 'accounts:update_lecturer' profile_detail.id %}">Update Details</a></li>
+                        <li><a href="{% url 'accounts:update_user' profile_detail.id %}">Update Email</a></li>
+
+                    </ul>
+                    <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
+                        <div class="product-tab-list tab-pane fade active in" id="description">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="review-content-section">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                <div class="address-hr biography">
+                                                    <p><b>Full Name</b><br /> {{profile_detail.full_name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                <div class="address-hr biography">
+                                                    <p><b>Gender</b><br /> {{profile_detail.gender}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                <div class="address-hr biography">
+                                                    <p style="word-wrap: break-word;"><b>Email</b><br />
+                                                        {{profile_detail.user.email}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                <div class="address-hr biography">
+                                                    <p><b>Mobile</b><br /> {{profile_detail.phone_number}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="skill-title">
+                                                            <h2>Courses Created</h2>
+                                                            <hr />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ex-pro">
+                                                    <ul>
+                                                        {% for course in profile_detail.courses_registered %}
+                                                        <li><i class="fa fa-angle-right"></i>{{course.full_course_name}}
+                                                        </li>
+                                                        {% empty %}
+                                                        <h3>No course Registrered</h3>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-copyright-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer-copy-right">
+                    <p>Copyright © 2018. All rights reserved. Template by <a
+                            href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

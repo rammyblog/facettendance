@@ -1,0 +1,55 @@
+{% extends "base_dashboard.html" %}
+{% load i18n %}
+{% load static i18n %}
+{% block head_title %}{% trans "Authentication Image" %}{% endblock %}
+
+{%block css%}
+  {{block.super}}
+
+<link href="{% static 'css/auth-image.css' %}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block content %}
+<div class="projects-clean">
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="intro">
+          <h2 class="text-center">Authentication Image</h2>
+          <p class="text-center">This image will be used to authenticate you whenever you try to take attendance. Ensure you get proper lightning when taking the picture</p>
+      </div>
+      <div class="row projects camera">
+          <div class="col-sm-6 col-lg-6 item">
+              <video id="video">Video stream not available.</video>
+              <h6 class="name">Click the button below to take a Photo</h6>
+              
+              <div>
+                <button id='startbutton' class="btn btn-primary" type="button">Take photo</button>
+                <a class="btn btn-info" href="{% url 'course:user_dashboard' %}" type="submit">Cancel</a>
+              </div>
+              <p class="description">If you are not satisfied with what you have in the second column, Kindly Retake the picture</p>
+          </div>
+          <div class="col-sm-6 col-lg-6 item output">
+            <canvas class="img-fluid d-none" id="canvas"> </canvas>
+            <!-- <img id='photo' class="img-fluid" name='' alt="The screen capture will appear in this box." > -->
+            <input type="hidden" name="autentication_image" id="auth_image_64">
+            <h3 class="name">Photo</h3>
+              <p class="description"></p><button class="btn btn-success" type="submit">Proceed</button></div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+  {{block.super}}
+
+<script src="{% static 'js/takePhoto.js' %}"></script>
+
+
+{% endblock javascript %}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../Build4SDG/.idea/Build4SDG.iml" filepath="$PROJECT_DIR$/../../Build4SDG/.idea/Build4SDG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../reactDjango/News/.idea/News.iml" filepath="$PROJECT_DIR$/../../reactDjango/News/.idea/News.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/facettendace.iml" filepath="$PROJECT_DIR$/.idea/facettendace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../stegoapp/.idea/stegoapp.iml" filepath="$PROJECT_DIR$/../stegoapp/.idea/stegoapp.iml" />
+    </modules>
+  </component>
+</project>

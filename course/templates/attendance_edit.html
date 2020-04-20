@@ -1,0 +1,38 @@
+{% extends 'base_dashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %} Edit Attendance{% endblock %}
+{% block content %}
+    <div class="error-pagewrap">
+        <div class="error-page-int">
+            <div class="text-center custom-login">
+                <h3>Edit Attendance for {{ name }} ({{ matric_no }})</h3>
+            </div>
+            <div class="content-error">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="">
+                                    <div class="">
+                                        <form method="post" novalidate>
+                                            {% csrf_token %}
+
+                                             {{ form }}
+
+                                            <button type="submit" class="btn btn-primary btn-block">Edit Attendance Info
+                                            </button>
+                                        </form>
+
+                                        <h3 class="card-title"></h3>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
