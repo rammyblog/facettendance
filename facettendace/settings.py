@@ -90,7 +90,7 @@ DATABASES = {
         "NAME" : "faceattendance",
         "HOST": 'localhost',
         "PORT":'5432',
-        "PASSWORD": 'timilehin3151',
+        "PASSWORD": '',
         "USER": 'rammy'
 
     }
