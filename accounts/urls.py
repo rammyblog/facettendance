@@ -1,15 +1,16 @@
 from django.urls import path
-from .views import (user_registration, CreateStudent, UpdateStudent,
-                    student_login, student_image_login, image_registration,
+from .views import (StudentSignUpView, LecturerSignUpView, UpdateStudent,
+                    user_login, student_image_login, image_registration,
                     StudentDetail, LecturerDetail, UpdateLecturer, UpdateUser)
 from django.contrib.auth import views
 
 app_name = 'accounts'
 
 urlpatterns = [
-    path('register/', user_registration, name='Register'),
-    path('add-student/', CreateStudent.as_view(), name='add_student'),
-    path('student/login/', student_login, name='student_login'),
+    path('lecturer/register/', LecturerSignUpView.as_view(),
+         name='lecturer_register'),
+    path('add-student/', StudentSignUpView.as_view(), name='add_student'),
+    path('user/login/', user_login, name='user_login_redirect'),
     path('student/image/login/<int:pk>/',
          student_image_login, name='student_image_login'),
     path('update-student/<int:pk>/',

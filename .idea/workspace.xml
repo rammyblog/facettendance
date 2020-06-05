@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="" />
+    <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,17 +22,20 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1a5ZEYQFMLHFKc0qjrzpk3xj7LM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Build4SDG" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../reactDjango/bulk_mailer/backend" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -83,17 +90,24 @@
       <workItem from="1586070753933" duration="10966000" />
       <workItem from="1586109748916" duration="22897000" />
       <workItem from="1586282285659" duration="13608000" />
+      <workItem from="1587502054115" duration="4767000" />
+      <workItem from="1588099281500" duration="829000" />
+      <workItem from="1588273676387" duration="135000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="466" y="154" width="424" height="485" key="FileChooserDialogImpl" timestamp="1586359033170">
+    <state x="571" y="271" width="214" height="251" key="#Notifications" timestamp="1588273723058">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="466" y="154" width="424" height="485" key="FileChooserDialogImpl/0.24.1366.744@0.24.1366.744" timestamp="1586359033170" />
+    <state x="571" y="271" width="214" height="251" key="#Notifications/0.24.1366.744@0.24.1366.744" timestamp="1588273723058" />
+    <state x="466" y="154" width="424" height="485" key="FileChooserDialogImpl" timestamp="1588273933634">
+      <screen x="0" y="24" width="1366" height="744" />
+    </state>
+    <state x="466" y="154" width="424" height="485" key="FileChooserDialogImpl/0.24.1366.744@0.24.1366.744" timestamp="1588273933634" />
     <state x="202" y="31" width="962" height="731" key="SettingsEditor" timestamp="1586361376216">
       <screen x="0" y="24" width="1366" height="744" />
     </state>

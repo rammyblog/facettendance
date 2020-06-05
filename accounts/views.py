@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from .forms import UserRegistrationForm, StudentForm, StudentLoginForm
+from .forms import UserRegistrationForm, LecturerSignUpForm, StudentSignUpForm
 from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic import DetailView
 from .mixins import ViewPermissionMixin
@@ -13,56 +13,84 @@ from .utils import convert64toImage, face_rec_login, encoded_face
 from django.contrib import messages
 
 
-def user_registration(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            user_form.save(commit=False)
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password1']
-            email = user_form.cleaned_data['email']
+class StudentSignUpView(CreateView):
+    model = User
+    form_class = StudentSignUpForm
+    template_name = 'register.html'
 
-            user = user_form.save()
-            Lecturer.objects.update_or_create(
-                user=user,
-                defaults={
-                    "gender": user_form.cleaned_data['gender'],
-                    "qualification": user_form.cleaned_data['qualification'],
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'student'
+        return super().get_context_data(**kwargs)
 
-                }
-            )
-            user = authenticate(request, username=username, password=password)
-            login(request, user)
+    def form_valid(self, form):
+        user = form.save()
+        matric_no = user.username
+        user.save()
+        login(self.request, user)
+        student = Student.objects.get(matric_no=matric_no)
+        return redirect(reverse('accounts:image_register', args=[student.id]))
 
-            return redirect('course:user_dashboard')
+
+class LecturerSignUpView(CreateView):
+    model = User
+    form_class = LecturerSignUpForm
+    template_name = 'register.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'Lecturer'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        # matric_no = user.cleaned_data['user']
+        # user.save()
+        login(self.request, user)
+        # student = Student.objects.get(matric_no=matric_no)
+        return redirect(reverse('course:user_dashboard'))
+
+
+# def user_registration(request):
+#     if request.method == 'POST':
+#         user_form = UserRegistrationForm(request.POST)
+#         if user_form.is_valid():
+#             user_form.save(commit=False)
+#             username = user_form.cleaned_data['username']
+#             password = user_form.cleaned_data['password1']
+#             email = user_form.cleaned_data['email']
+
+#             user = user_form.save()
+#             Lecturer.objects.update_or_create(
+#                 user=user,
+#                 defaults={
+#                     "gender": user_form.cleaned_data['gender'],
+#                     "qualification": user_form.cleaned_data['qualification'],
+
+#                 }
+#             )
+#             user = authenticate(request, username=username, password=password)
+#             login(request, user)
+
+#             return redirect('course:user_dashboard')
+#     else:
+#         user_form = UserRegistrationForm()
+
+#     context = {
+#         'form': user_form
+#     }
+
+#     return render(request, 'register.html', context)
+
+
+def user_login(request):
+    if request.user.is_student:
+        student = Student.objects.get(user=request.user)
+        print(student.pk)
+        if student.image:
+            return redirect(reverse('accounts:student_image_login', args=[student.pk]))
+        else:
+            return redirect(reverse('accounts:image_register', args=[student.pk]))
     else:
-        user_form = UserRegistrationForm()
-
-    context = {
-        'form': user_form
-    }
-
-    return render(request, 'register.html', context)
-
-
-def student_login(request):
-    if request.method == 'POST':
-        form = StudentLoginForm(request.POST)
-        if form.is_valid():
-            matric_no = form.cleaned_data['matric_no']
-            student = Student.objects.get(matric_no=matric_no)
-            if student.image:
-                return redirect(reverse('accounts:student_image_login', args=[student.pk]))
-            else:
-                return redirect(reverse('accounts:image_register', args=[student.id]))
-    else:
-        form = StudentLoginForm()
-
-    context = {
-        'form': form
-    }
-
-    return render(request, 'login.html', context)
+        return redirect(reverse('course:user_dashboard'))
 
 
 def student_image_login(request, pk):
@@ -81,15 +109,15 @@ def student_image_login(request, pk):
         return redirect('accounts:student_login')
 
 
-class CreateStudent(CreateView):
-    model = Student
-    fields = ['first_name', 'last_name',
-              'matric_no', 'dept', 'school', 'level']
-    template_name = 'add_student.html'
+# class CreateStudent(CreateView):
+#     model = Student
+#     fields = ['first_name', 'last_name',
+#               'matric_no', 'dept', 'school', 'level']
+#     template_name = 'add_student.html'
 
-    def get_success_url(self):
-        if not self.success_url:
-            return reverse_lazy('accounts:image_register', args=[self.object.id])
+#     def get_success_url(self):
+#         if not self.success_url:
+#             return reverse_lazy('accounts:image_register', args=[self.object.id])
 
 
 class StudentDetail(ViewPermissionMixin, DetailView):
@@ -190,7 +218,7 @@ def image_registration(request, pk):
     if request.method == 'POST':
         image = request.POST['autentication_image']
         user = get_object_or_404(Student, pk=pk)
-        user_image = convert64toImage(image, user.first_name)
+        user_image = convert64toImage(image, user.user.first_name)
         temppath = default_storage.save('temp.png', content=user_image)
         temp_filepath = default_storage.path(temppath)
         face_accepted = encoded_face(temp_filepath)

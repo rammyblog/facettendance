@@ -44,12 +44,12 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     'phonenumber_field',
-     'debug_toolbar',
+    'debug_toolbar',
 
 ]
 
 MIDDLEWARE = [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,8 +64,7 @@ ROOT_URLCONF = 'facettendace.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,9 +86,9 @@ WSGI_APPLICATION = 'facettendace.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME" : "faceattendance",
+        "NAME": "faceattendance",
         "HOST": 'localhost',
-        "PORT":'5432',
+        "PORT": '5432',
         "PASSWORD": '',
         "USER": 'rammy'
 
@@ -144,3 +143,6 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL = 'accounts:user_login_redirect'

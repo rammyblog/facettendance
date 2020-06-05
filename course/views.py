@@ -11,12 +11,15 @@ from datetime import datetime
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 
+from accounts.decorator import student_required, teacher_required
+
 
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 
 
+@method_decorator([login_required, teacher_required], name='dispatch')
 class CreateCourse(CreateView):
     model = Course
     fields = ['course_code', 'course_name']
@@ -37,6 +40,7 @@ class CreateCourse(CreateView):
             return reverse_lazy('course:course_list')
 
 
+@method_decorator([login_required, teacher_required], name='dispatch')
 class CourseList(ListView):
     model = Course
     template_name = 'course_list.html'
@@ -53,6 +57,8 @@ class CourseList(ListView):
     #     return context
 
 
+@login_required
+@teacher_required
 def all_students_per_lecturer(request):
     lecturer = get_object_or_404(Lecturer, user=request.user)
     courses = list(Course.objects.filter(
@@ -74,6 +80,8 @@ def student_course_registration_processing(course_array, student, status):
         )
 
 
+@login_required
+@student_required
 def student_course_registration(request, id):
     student = Student.objects.get(id=id)
     courses = Course.objects.all()
@@ -117,6 +125,8 @@ def student_course_registration(request, id):
 #     return render(request, 'student_register_courses.html', context)
 
 
+@login_required
+@teacher_required
 def take_attendance(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     student_registered_for_course = course.studentcourseregistration_set.filter(
@@ -188,6 +198,7 @@ def attendance_per_course_breakdown(request, attendance_date):
     return render(request, 'view_attendance_by_breakdown_course.html', context)
 
 
+@method_decorator([login_required, teacher_required], name='dispatch')
 class AttendanceUpdate(UpdateView):
     model = Attendance
     fields = ['status']

@@ -1,29 +1,33 @@
-{%extends 'base.html'%}
-{% block head_title %} Log in to Faceattendace{% endblock %}
-{% block contents%}
+{%extends 'base.html'%} 
+{% block head_title %} Log in to Faceattendace{%endblock%}
+ {% block contents%}
 
-  <div class="row center-element">
-    <div class="col-lg-4 col-md-6 col-sm-8">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title text-center">Log in</h3>
-          <form method="post" novalidate>
-
-            {% csrf_token %}
-             <input type="hidden" name="next" value="{{ next }}">
-            {% include 'includes/forms.html' %}
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
-          </form>
-        </div>
-        <div class="card-footer text-muted text-center">
-          New to Faceattendace? <a href="{% url 'accounts:Register' %}">Sign up</a>
-        </div>
+<div class="row center-element">
+  <div class="col-lg-4 col-md-6 col-sm-8">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title text-center">Log in</h3>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          {% include 'includes/forms.html' %}
+          <button type="submit" class="btn btn-primary btn-block">
+            Log in
+          </button>
+        </form>
       </div>
-      <div class="text-center py-2">
-        <strong>
-          <a href="{%url 'accounts:password_reset'%}" class="text-muted">Forgot your password?</a>
-        </strong>
+      <div class="card-footer text-muted text-center">
+        New to Faceattendace?
+        {% comment %} <a href="{% url 'accounts:Register' %}">Sign up</a> {% endcomment %}
       </div>
     </div>
+    <div class="text-center py-2">
+      <strong>
+        <a href="{%url 'accounts:password_reset'%}" class="text-muted"
+          >Forgot your password?</a
+        >
+      </strong>
+    </div>
   </div>
+</div>
 {% endblock %}

@@ -4,9 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from .validators import UnicodeUsernameValidator
 
 
-class Lecturer(models.Model):
+class User(AbstractUser):
     MALE = 'MALE'
     FEMALE = 'FEMALE'
     OTHERS = 'OTHERS'
@@ -15,14 +17,33 @@ class Lecturer(models.Model):
         (FEMALE, 'Female'),
         (OTHERS, 'Others'),
     ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=40, unique=True)
+    email = models.EmailField(_('email address'), unique=True)
+
+    USERNAME_FIELD = 'username'
+
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6)
-    qualification = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='lecturers', null=True, blank=True)
     dept = models.CharField(_("Your Department"), blank=True, max_length=255)
-    school = models.CharField(_("Name of school"), blank=True, max_length=255)
     phone_number = PhoneNumberField(blank=True, default='')
     address = models.CharField(max_length=500, default='')
+    is_student = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
+
+    # REQUIRED_FIELDS = ['email', 'username']
+
+    def __init__(self, *args, **kwargs):
+        validate_username = UnicodeUsernameValidator()
+        super(User, self).__init__(*args, **kwargs)
+        self._meta.get_field('username').validators = [validate_username]
+
+
+class Lecturer(models.Model):
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True)
+
+    qualification = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='lecturers', null=True, blank=True)
 
     class Meta:
         verbose_name = "Lecturer"
@@ -57,20 +78,15 @@ class Student(models.Model):
         (LEVEL_SIX, '600L'),
 
     ]
-    first_name = models.CharField(max_length=250)
-    last_name = models.CharField(max_length=250)
-    matric_no = models.CharField(unique=True, max_length=200)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True)
     image = models.ImageField(upload_to='students', null=True, blank=True)
-    dept = models.CharField(_("Your Department"), blank=True, max_length=255)
-    school = models.CharField(_("Name of school"), blank=True, max_length=255)
+
     level = models.CharField(_('Your Level'), blank=True,
                              choices=LEVEL_CHOICE, max_length=4)
-    phone_number = PhoneNumberField(blank=True, default='')
-    address = models.CharField(max_length=500, default='')
-    email = models.EmailField(max_length=254, default='')
 
     def __str__(self):
-        return self.first_name
+        return self.user.username
 
     @property
     def full_name(self):
@@ -81,8 +97,8 @@ class Student(models.Model):
         return self.studentcourseregistration_set.filter(active=True)
 
 
-@receiver(post_save, sender=User)
-def create_or_update_lecturer_profile(sender, instance, created, **kwargs):
-    if created:
-        Lecturer.objects.create(user=instance)
-    instance.lecturer.save()
+# @receiver(post_save, sender=User)
+# def create_or_update_lecturer_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Lecturer.objects.create(user=instance)
+#     instance.lecturer.save()
