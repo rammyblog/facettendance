@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import environ
+import django_heroku
+
+env = environ.Env(
+    DEBUG=(bool, True)
+)
+# reading .env file
+environ.Env.read_env()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e&27hywjm=&!mvbdi+t53-)m(y_i!k_z*%=@76i16q7$7=m^^^'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,17 +92,22 @@ WSGI_APPLICATION = 'facettendace.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "faceattendance",
-        "HOST": 'localhost',
-        "PORT": '5432',
-        "PASSWORD": '',
-        "USER": 'rammy'
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": "faceattendance",
+#         "HOST": 'localhost',
+#         "PORT": '5432',
+#         "PASSWORD": '',
+#         "USER": 'rammy'
 
-    }
+#     }
+# }
+DATABASES = {
+    "default": env.db("DATABASE_URL", default="postgres:///faceattendance")
 }
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -146,3 +160,4 @@ INTERNAL_IPS = [
 AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = 'accounts:user_login_redirect'
+django_heroku.settings(locals())

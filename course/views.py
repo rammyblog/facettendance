@@ -7,6 +7,8 @@ from django.views.generic.list import ListView
 from .models import Course, Attendance, StudentCourseRegistration
 from accounts.models import Lecturer, Student
 from accounts.utils import face_rec_login
+from django.utils.decorators import method_decorator
+
 from datetime import datetime
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
