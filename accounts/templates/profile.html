@@ -27,7 +27,7 @@
                         <div class="profile-info-inner">
                             <div class="profile-img">
                                 <img src="{{profile_detail.image.url}}" alt="" />
-                                <a class="btn btn-info center-block" href="{% url 'accounts:image_register' profile_detail.id %}" >Change picture</a>
+                                <a class="btn btn-info center-block" href="{% url 'accounts:image_register' profile_detail.pk %}" >Change picture</a>
                             </div>
                             <div class="profile-details-hr">
                                 <div class="row">
@@ -78,7 +78,7 @@
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#description">Details</a></li>
                                 <!-- <li><a href="#reviews"> Biography</a></li> -->
-                                <li><a href="{% url 'accounts:update_student' profile_detail.id %}">Update Details</a></li>
+                                <li><a href="{% url 'accounts:update_student' profile_detail.pk %}">Update Details</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
                                 <div class="product-tab-list tab-pane fade active in" id="description">

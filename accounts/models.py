@@ -1,10 +1,9 @@
-from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+
 from .validators import UnicodeUsernameValidator
 
 
@@ -18,7 +17,7 @@ class User(AbstractUser):
         (OTHERS, 'Others'),
     ]
     username = models.CharField(max_length=40, unique=True)
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(_('email address'), null=True,)
 
     USERNAME_FIELD = 'username'
 
@@ -38,7 +37,6 @@ class User(AbstractUser):
 
 
 class Lecturer(models.Model):
-
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
 
@@ -90,12 +88,11 @@ class Student(models.Model):
 
     @property
     def full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.user.first_name} {self.user.last_name}"
 
     @property
     def courses_registered(self):
         return self.studentcourseregistration_set.filter(active=True)
-
 
 # @receiver(post_save, sender=User)
 # def create_or_update_lecturer_profile(sender, instance, created, **kwargs):

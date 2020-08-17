@@ -15,7 +15,7 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         
-                        {% if request.user.is_authenticated %}
+                        {% if request.user.is_authenticated  and request.user.lecturer %}
                         <li class="active">
                             <a class="has-arrow" href="{% url 'course:all_student_per_lecturer' %}" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
@@ -25,17 +25,6 @@
                             </ul>
                         </li>
 
-{#                        <li>#}
-{#                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Attendance</span></a>#}
-{#                            <ul class="submenu-angle" aria-expanded="false">#}
-{#                                <li><a title="All Courses" href="all-courses.html"><span class="mini-sub-pro">Take Attendace</span></a></li>#}
-{#                                <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Add Course</span></a></li>#}
-{#                                <li><a title="Edit Courses" href="edit-course.html"><span class="mini-sub-pro">Edit Course</span></a></li>#}
-{#                                <li><a title="Courses Profile" href="course-info.html"><span class="mini-sub-pro">Courses Info</span></a></li>#}
-{#                                <li><a title="course Payment" href="course-payment.html"><span class="mini-sub-pro">Courses Payment</span></a></li>#}
-{#                            </ul>#}
-{#                        </li>#}
-
                         <li>
                             <a class="has-arrow" href="{% url 'course:course_list' %}" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span>
                                  <span class="mini-click-non">Courses</span></a>
@@ -44,16 +33,13 @@
                                 <li><a title="Add Courses" href="{% url 'course:create_course' %}"><span class="mini-sub-pro">Add Course</span></a></li>
                             </ul>
                         </li>
-
-                        {% endif %}
-
-                        {% if student_profile %}
+                        {% else%}
                         <li>
                             <a class="has-arrow" href="{% url 'course:course_list' %}" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span>
                                  <span class="mini-click-non">Courses</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{% url 'course:student_registration' profile_detail.id %}"><span class="mini-sub-pro">Course Registration</span></a></li>
-                                <!-- <li><a title="Add Courses" href="{% url 'course:create_course' %}"><span class="mini-sub-pro">Add Course</span></a></li> -->
+                                <li><a title="All Courses" href="{% url 'course:student_registration' request.user.student.pk %}"><span class="mini-sub-pro">Course Registration</span></a></li>
+
                             </ul>
                         </li>
                         {% endif %}
@@ -717,7 +703,7 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                                                {% if request.user.is_authenticated %}
+                                                                {% if request.user.is_authenticated and request.user.lecturer  %}
                                         <li><a data-toggle="collapse" data-target="#Charts" href="#">Students <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul class="collapse dropdown-header-top">
                                                 <li><a href="{% url 'course:all_student_per_lecturer' %}">All Students</a></li>
@@ -733,13 +719,13 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        {% endif %}
-                                                            {% if student_profile %}
+                                        {% else %}
+
                                         <li><a data-toggle="collapse" data-target="#demopro" href="#">Courses <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
                                                 <li><a href="{% url 'course:course_list' %}">Course list</a>
                                                 </li>
-                                                <li><a href="{% url 'course:student_registration' profile_detail.id %}">Course Registration</a>
+                                                <li><a href="{% url 'course:student_registration' request.user.student.pk %}">Course Registration</a>
                                                 </li>
                                             </ul>
                                         </li>

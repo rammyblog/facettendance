@@ -99,24 +99,19 @@ class StudentSignUpForm(UserRegistrationForm):
         fields = UserCreationForm.Meta.fields + \
             ('level',)
 
-    # def clean_matric_no(self):
-    #     matric_no = self.cleaned_data['matric_no']
-
-    #     try:
-    #         Student.objects.get(matric_no)
-    #     except Student.DoesNotExist:
-    #         return matric_no
-
-    #     raise ValidationError('Matric Number already taken')
-
     @transaction.atomic
     def save(self):
         data = self.cleaned_data
+
         phone_number = data['phone_number']
         address = data['address']
         level = data['level']
         gender = data['gender']
         dept = data['dept']
+        password = data['password1']
+        email = data['email']
+        first_name = data['first_name']
+        last_name = data['last_name']
 
         user = super().save(commit=False)
         user.is_student = True
@@ -124,9 +119,14 @@ class StudentSignUpForm(UserRegistrationForm):
         user.phone_number = phone_number
         user.dept = dept
         user.gender = gender
+        user.email =email
+        user.first_name=first_name
+        user.last_name=last_name
+        user.set_password(password)
         user.save()
         student = Student.objects.create(
             user=user, level=level)
+        print(student)
         # student.interests.add(*self.cleaned_data.get('interests'))
         return user
 
@@ -158,13 +158,20 @@ class LecturerSignUpForm(UserRegistrationForm):
         qualification = data['qualification']
         gender = data['gender']
         dept = data['dept']
-
+        password = data['password1']
+        email = data['email']
+        first_name = data['first_name']
+        last_name = data['last_name']
         user = super().save(commit=False)
         user.is_teacher = True
         user.address = address
         user.phone_number = phone_number
         user.dept = dept
         user.gender = gender
+        user.email = email
+        user.first_name = first_name
+        user.last_name = last_name
+        user.set_password(password)
         user.save()
         Lecturer.objects.create(
             user=user,  qualification=qualification)

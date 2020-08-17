@@ -84,8 +84,8 @@ def student_course_registration_processing(course_array, student, status):
 
 @login_required
 @student_required
-def student_course_registration(request, id):
-    student = Student.objects.get(id=id)
+def student_course_registration(request, pk):
+    student = Student.objects.get(pk=pk)
     courses = Course.objects.all()
     courses_registered = list(student.studentcourseregistration_set.filter(
         active=True).values_list('course', flat=True))
@@ -96,7 +96,7 @@ def student_course_registration(request, id):
             selected_courses = [
                 int(i) for i in request.POST.getlist('selected_courses')]
         except MultiValueDictKeyError:
-            return redirect(reverse('accounts:student_detail', args=[id]))
+            return redirect(reverse('accounts:student_detail', args=[pk]))
         old_courses = list(set(courses_registered) - set(selected_courses))
         print(selected_courses)
         adding_selected_courses = student_course_registration_processing(
@@ -105,7 +105,7 @@ def student_course_registration(request, id):
             removing_old_courses = student_course_registration_processing(
                 old_courses, student, False)
         messages.success(request, 'Courses added successfully')
-        return redirect(reverse('accounts:student_detail', args=[id]))
+        return redirect(reverse('accounts:student_detail', args=[pk]))
     context = {
         'student': student,
         'courses': courses,

@@ -7,12 +7,13 @@ from django.views.generic import DetailView
 from .mixins import ViewPermissionMixin
 from django.contrib.auth import authenticate, login, logout
 from .models import Lecturer, Student
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from .utils import convert64toImage, face_rec_login, encoded_face
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 
-
+User = get_user_model()
 class StudentSignUpView(CreateView):
     model = User
     form_class = StudentSignUpForm
@@ -27,8 +28,9 @@ class StudentSignUpView(CreateView):
         matric_no = user.username
         user.save()
         login(self.request, user)
-        student = Student.objects.get(matric_no=matric_no)
-        return redirect(reverse('accounts:image_register', args=[student.id]))
+        student = Student.objects.get(user__username=matric_no)
+        print(student.pk)
+        return redirect(reverse('accounts:image_register', args=[student.pk]))
 
 
 class LecturerSignUpView(CreateView):
@@ -83,6 +85,7 @@ class LecturerSignUpView(CreateView):
 
 def user_login(request):
     if request.user.is_student:
+        print(request.user)
         student = Student.objects.get(user=request.user)
         print(student.pk)
         if student.image:
@@ -96,7 +99,7 @@ def user_login(request):
 def student_image_login(request, pk):
     student = get_object_or_404(Student, pk=pk)
     images_array, first_names, matric_nos = [student.image.path], [
-        student.first_name], [student.matric_no]
+        student.user.first_name], [student.user.username]
     authenticated = face_rec_login(
         images_array, first_names, matric_nos, student_login=True)
 
@@ -195,18 +198,21 @@ class UpdateUser(UpdateView):
 
 
 class UpdateStudent(UpdateView):
-    model = Student
-    fields = ['first_name', 'last_name',
-              'matric_no', 'dept', 'school', 'level']
+    model = User
+    fields = ['first_name', 'last_name', 'email', 'username', 'gender', 'dept', 'phone_number']
     template_name = 'add_student.html'
-
     context_object_name = 'student'
 
+    # def get_object(self, queryset=None):
+    #     if queryset is None:
+    #         queryset = self.get_queryset()
+    #         print(queryset)
+    #     return get_object_or_404(Student, pk=self.kwargs['pk'])
+
     def get_context_data(self, **kwargs):
-
         context = super(UpdateStudent, self).get_context_data(**kwargs)
+        # context['user'] = User.objects.get(student__pk=self.kwargs['pk'])  # whatever you would like
         context['update'] = True
-
         return context
 
     def get_success_url(self):
