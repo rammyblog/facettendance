@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import (dashboard, CreateCourse, CourseList, student_course_registration, all_students_per_lecturer, 
+from .views import (dashboard, CreateCourse, CourseList, StudentsPerCourseList, student_course_registration, all_students_per_lecturer,
                     take_attendance, attendance_per_course,attendance_per_course_breakdown, AttendanceUpdate, 
                     calculate_percentage_of_attendance)
 
@@ -9,6 +9,8 @@ urlpatterns = [
     path('dashboard/', dashboard, name='user_dashboard'),
     path('create-course/', CreateCourse.as_view(), name='create_course'),
     path('courses-list', CourseList.as_view(), name='course_list'),
+    path('course/students/<int:pk>', StudentsPerCourseList.as_view(), name='courses_per_students'),
+
     path('student/<int:pk>/registration/',
          student_course_registration, name='student_registration'),
     path('all/student/',

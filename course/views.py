@@ -1,19 +1,18 @@
-from django.db.models import Q, Count
-from django.shortcuts import render, get_object_or_404, redirect
+from datetime import datetime
+
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
+from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from .models import Course, Attendance, StudentCourseRegistration
-from accounts.models import Lecturer, Student
-from accounts.utils import face_rec_login
-from django.utils.decorators import method_decorator
-
-from datetime import datetime
-from django.contrib import messages
-from django.utils.datastructures import MultiValueDictKeyError
 
 from accounts.decorator import student_required, teacher_required
+from accounts.models import Lecturer, Student
+from accounts.utils import face_rec_login
+from .models import Course, Attendance, StudentCourseRegistration
 
 
 @login_required
@@ -57,6 +56,17 @@ class CourseList(ListView):
     #     courses = list(self.get_queryset().values_list('id', flat=True))
     #     context["sudents_registered"] =  StudentCourseRegistration.objects.filter(course_id__in=courses).filter(active=True)
     #     return context
+
+
+@method_decorator([login_required, teacher_required], name='dispatch')
+class StudentsPerCourseList(ListView):
+    model = StudentCourseRegistration
+    template_name = 'all-students.html'
+    context_object_name = 'students'
+
+    def get_queryset(self, *args, **kwargs):
+        course_pk = self.kwargs.get('pk')
+        return StudentCourseRegistration.objects.filter(course_id=course_pk).filter(active=True)
 
 
 @login_required
@@ -113,6 +123,7 @@ def student_course_registration(request, pk):
     }
 
     return render(request, 'student_register_courses.html', context)
+
 
 # def student_course_registration_processing(request):
 #     student = Student.objects.get(id=id)

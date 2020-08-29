@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/templates/all-students.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/all-students.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/templates/course_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/course_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,7 @@
       <workItem from="1588273676387" duration="135000" />
       <workItem from="1597630385612" duration="9213000" />
       <workItem from="1597946737224" duration="501000" />
-      <workItem from="1598730385745" duration="822000" />
+      <workItem from="1598730385745" duration="1933000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -125,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597638981906</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed all students template for lecturers">
+      <created>1598731412278</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598731412278</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,17 +143,18 @@
     <MESSAGE value="Prepare for heroku" />
     <MESSAGE value="Fixed some bugs" />
     <MESSAGE value="Fixed the whitenoise issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the whitenoise issues" />
+    <MESSAGE value="Fixed all students template for lecturers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed all students template for lecturers" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1597638981563">
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1598731400887">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1597638981563" />
-    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1597638984162">
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1598731400887" />
+    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1598732186360">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2/0.24.1366.744@0.24.1366.744" timestamp="1597638984162" />
+    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2/0.24.1366.744@0.24.1366.744" timestamp="1598732186360" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598731136010">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
@@ -162,12 +170,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>163</line>
+          <line>174</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>203</line>
+          <line>214</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

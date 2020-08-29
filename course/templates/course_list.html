@@ -59,7 +59,7 @@
                                     <tr>
                                         <td></td>
                                         <td>{{ course.id }}</td>
-                                        <td>{{ course.course_code}}</td>
+                                        <td><a href="{% url 'course:courses_per_students' course.id %}">{{ course.course_code}}</a> </td>
                                         <td>{{ course.course_name }}</td>
                                         <td>{{ course.total_students}}</td>
                                         <td><a class="btn btn-info" href="{% url 'course:take_attendance' course.id %}">
