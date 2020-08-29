@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/course/templates/student-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course/templates/all-students.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/all-students.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +103,7 @@
       <workItem from="1588273676387" duration="135000" />
       <workItem from="1597630385612" duration="9213000" />
       <workItem from="1597946737224" duration="501000" />
-      <workItem from="1598730385745" duration="2240000" />
+      <workItem from="1598730385745" duration="3181000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -136,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598732364047</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Changed student template to a table">
+      <created>1598732752787</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1598732752787</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,13 +160,14 @@
     <MESSAGE value="Fixed the whitenoise issues" />
     <MESSAGE value="Fixed all students template for lecturers" />
     <MESSAGE value="Getting all students for a course" />
-    <option name="LAST_COMMIT_MESSAGE" value="Getting all students for a course" />
+    <MESSAGE value="Changed student template to a table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed student template to a table" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1598732363708">
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1598732752430">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1598732363708" />
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1598732752430" />
     <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1598732186360">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
@@ -175,12 +187,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>174</line>
+          <line>185</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>214</line>
+          <line>225</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

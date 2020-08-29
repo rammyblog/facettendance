@@ -106,7 +106,7 @@
                                     <tr>
                                         <td></td>
 {#                                        <td>{{ student.pk }}</td>#}
-                                        <td>{{ student.student.user.username}} </td>
+                                        <td><a href="{% url 'course:lecturer_student' student.student.pk %}">{{ student.student.user.username}}</a>  </td>
                                         <td>{{ student.student.user.first_name }}</td>
                                         <td>{{ student.student.user.last_name}}</td>
 

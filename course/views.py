@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.decorators import method_decorator
+from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
@@ -56,6 +57,16 @@ class CourseList(ListView):
     #     courses = list(self.get_queryset().values_list('id', flat=True))
     #     context["sudents_registered"] =  StudentCourseRegistration.objects.filter(course_id__in=courses).filter(active=True)
     #     return context
+
+@method_decorator([login_required, teacher_required], name='dispatch')
+class StudentProfile(DetailView):
+    model = Student
+    template_name='student-profile.html'
+    context_object_name = 'student'
+
+    def get_queryset(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        return Student.objects.filter(pk=pk)
 
 
 @method_decorator([login_required, teacher_required], name='dispatch')
