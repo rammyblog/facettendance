@@ -9,12 +9,17 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="student-inner-std res-mg-b-30">
                             <div class="student-img">
+                                {% if student.student.image %}
                                 <img src="{{student.student.image.url}}" alt="" />
+
+                                {% else %}
+                                <img src="" alt="" />
+                    {% endif %}
                             </div>
                             <div class="student-dtl">
                                 <h2>{{student.student.full_name}}</h2>
-                                <p class="dp"><b>Dept:</b>{{student.student.dept}}</p>
-                                <p class="dp-ag"><b>Matric No:</b> {{student.student.matric_no}}</p>
+                                <p class="dp"><b>Dept:</b>{{student.student.user.dept}}</p>
+                                <p class="dp-ag"><b>Matric No:</b> {{student.student.user.username}}</p>
                             </div>
                         </div>
                     </div>

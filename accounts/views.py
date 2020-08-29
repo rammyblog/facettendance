@@ -85,7 +85,6 @@ class LecturerSignUpView(CreateView):
 
 def user_login(request):
     if request.user.is_student:
-        print(request.user)
         student = Student.objects.get(user=request.user)
         print(student.pk)
         if student.image:

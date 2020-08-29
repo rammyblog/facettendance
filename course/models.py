@@ -1,7 +1,6 @@
-import math
 from django.db import models
+
 from accounts.models import Lecturer, Student
-from django.db.models import Count
 
 
 class Course(models.Model):
@@ -20,14 +19,11 @@ class Course(models.Model):
     def full_course_name(self):
         return f"{self.course_code} ({self.course_name})"
 
-    
     @property
     def total_students(self):
         cr = Course.objects.get(id=self.id)
         att_class = cr.studentcourseregistration_set.filter(active=True)
         return len(att_class)
-
-
 
 
 class StudentCourseRegistration(models.Model):
@@ -36,13 +32,7 @@ class StudentCourseRegistration(models.Model):
     active = models.BooleanField(default=False)
 
     def __str__(self):
-        sname = Student.objects.get(first_name=self.student)
-        cname = Course.objects.get(course_code=self.course)
-        return '%s : %s' % (sname.first_name, cname.course_code)
-    
-        
-   
-
+        return '%s : %s' % (self.student.user.first_name, self.course.course_code)
 
 
 class Attendance(models.Model):
@@ -50,6 +40,7 @@ class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
     date_recorded = models.DateField(auto_now_add=True)
+
     # grade = models.FloatField(default=0)
 
     class Meta:
@@ -80,7 +71,7 @@ class Attendance(models.Model):
         else:
             attendance = round(len(att_class) / len(total_class) * 100, 2)
         return attendance
-    
+
     @property
     def total_attended(self):
         stud = Student.objects.get(id=self.student.id)
@@ -97,12 +88,8 @@ class Attendance(models.Model):
         absent = len(total_class) - len(att_class)
         return absent
 
-    
     @property
     def total_present_per_class(self):
         total_class = Attendance.objects.filter(status=True).filter(date_recorded=self.date_recorded)
         total_present = len(total_class)
         return total_present
-
-
-
