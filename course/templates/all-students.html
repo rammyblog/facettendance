@@ -1,45 +1,152 @@
+{#{% extends 'base_dashboard.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block content %}#}
+{#        <div class="contacts-area mg-b-15">#}
+{#            <div class="container-fluid">#}
+{#                <div class="row">#}
+{#                    {% for student in students %}#}
+{#                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">#}
+{#                        <div class="student-inner-std res-mg-b-30">#}
+{#                            <div class="student-img">#}
+{#                                {% if student.student.image %}#}
+{#                                <img src="{{student.student.image.url}}" alt="" />#}
+{##}
+{#                                {% else %}#}
+{#                                <img src="" alt="" />#}
+{#                    {% endif %}#}
+{#                            </div>#}
+{#                            <div class="student-dtl">#}
+{#                                <h2>{{student.student.full_name}}</h2>#}
+{#                                <p class="dp"><b>Dept:</b>{{student.student.user.dept}}</p>#}
+{#                                <p class="dp-ag"><b>Matric No:</b> {{student.student.user.username}}</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#           #}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="footer-copyright-area">#}
+{#            <div class="container-fluid">#}
+{#                <div class="row">#}
+{#                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">#}
+{#                        <div class="footer-copy-right">#}
+{#                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#   #}
+{#{% endblock %}#}
+{##}
+{##}
+
+
+
+
 {% extends 'base_dashboard.html' %}
 {% load static %}
 
-{% block content %}
-        <div class="contacts-area mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                    {% for student in students %}
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std res-mg-b-30">
-                            <div class="student-img">
-                                {% if student.student.image %}
-                                <img src="{{student.student.image.url}}" alt="" />
+{% block css %}
+{{ block.super }}
+<!-- x-editor CSS
+		============================================ -->
+<link rel="stylesheet" href="{% static 'css/editor/select2.css' %}">
+<link rel="stylesheet" href="{% static 'css/editor/datetimepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/editor/bootstrap-editable.css' %}">
+<link rel="stylesheet" href="{% static 'css/editor/x-editor-style.css' %}">
+<!-- normalize CSS ============================================ -->
+<link rel="stylesheet" href="{% static 'css/data-table/bootstrap-table.css' %}">
+<link rel="stylesheet" href="{% static 'css/data-table/bootstrap-editable.css' %}">
 
-                                {% else %}
-                                <img src="" alt="" />
-                    {% endif %}
-                            </div>
-                            <div class="student-dtl">
-                                <h2>{{student.student.full_name}}</h2>
-                                <p class="dp"><b>Dept:</b>{{student.student.user.dept}}</p>
-                                <p class="dp-ag"><b>Matric No:</b> {{student.student.user.username}}</p>
-                            </div>
+{% endblock %}
+
+{% block content %}
+<div class="data-table-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="sparkline13-list">
+                    <div class="sparkline13-hd">
+                        <div class="main-sparkline13-hd">
+                            <h1>All students <span class="table-project-n">Data</span> Table</h1>
                         </div>
                     </div>
-                    {% endfor %}
-           
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="footer-copy-right">
-                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                    <div class="sparkline13-graph">
+                        <div class="datatable-dashv1-list custom-datatable-overright">
+                            <div id="toolbar">
+                                <select class="form-control dt-tb">
+                                    <option value="">Export Basic</option>
+                                    <option value="all">Export All</option>
+                                    <option value="selected">Export Selected</option>
+                                </select>
+                            </div>
+                            <table id="table" data-toggle="table" data-pagination="true" data-search="true"
+                                data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true"
+                                data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true"
+                                data-toolbar="#toolbar">
+                                <thead>
+                                    <tr>
+                                        <th data-field="state" data-checkbox="true"></th>
+{#                                        <th data-field="id">Student ID</th>#}
+                                        <th data-field="code">Matric Code</th>
+                                        <th data-field="name">First Name</th>
+                                        <th data-field="students_registered">Last Name</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for student in students %}
+                                    <tr>
+                                        <td></td>
+{#                                        <td>{{ student.pk }}</td>#}
+                                        <td>{{ student.student.user.username}} </td>
+                                        <td>{{ student.student.user.first_name }}</td>
+                                        <td>{{ student.student.user.last_name}}</td>
+
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+{% endblock %}
 
-   
+{% block javascript %}
+{{ block.super }}
+<!-- data table JS
+		============================================ -->
+<script src="{% static 'js/data-table/bootstrap-table.js' %}"></script>
+<script src="{% static 'js/data-table/tableExport.js' %}"></script>
+<script src="{% static 'js/data-table/data-table-active.js' %}"></script>
+<script src="{% static 'js/data-table/bootstrap-table-editable.js' %}"></script>
+<script src="{% static 'js/data-table/bootstrap-editable.js' %}"></script>
+<script src="{% static 'js/data-table/bootstrap-table-resizable.js' %}"></script>
+<script src="{% static 'js/data-table/colResizable-1.5.source.js' %}"></script>
+<script src="{% static 'js/data-table/bootstrap-table-export.js' %}"></script>
+<!--  editable JS
+		============================================ -->
+<script src="{% static 'js/editable/jquery.mockjax.js' %}"></script>
+<script src="{% static 'js/editable/mock-active.js' %}"></script>
+<script src="{% static 'js/editable/select2.js' %}"></script>
+<script src="{% static 'js/editable/moment.min.js' %}"></script>
+<script src="{% static 'js/editable/bootstrap-datetimepicker.js' %}"></script>
+<script src="{% static 'js/editable/bootstrap-editable.js' %}"></script>
+<script src="{% static 'js/editable/xediable-active.js' %}"></script>
+<!-- Chart JS
+		============================================ -->
+<script src="{% static 'js/chart/jquery.peity.min.js' %} "></script>
+<script src="{% static 'js/peity/peity-active.js' %}"></script>
 {% endblock %}

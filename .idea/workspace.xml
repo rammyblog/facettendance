@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/templates/course_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/course_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/templates/all-students.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/all-students.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +99,7 @@
       <workItem from="1588273676387" duration="135000" />
       <workItem from="1597630385612" duration="9213000" />
       <workItem from="1597946737224" duration="501000" />
-      <workItem from="1598730385745" duration="1933000" />
+      <workItem from="1598730385745" duration="2240000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -132,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598731412278</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Getting all students for a course">
+      <created>1598732364047</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1598732364047</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,21 +148,22 @@
     <MESSAGE value="Fixed some bugs" />
     <MESSAGE value="Fixed the whitenoise issues" />
     <MESSAGE value="Fixed all students template for lecturers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed all students template for lecturers" />
+    <MESSAGE value="Getting all students for a course" />
+    <option name="LAST_COMMIT_MESSAGE" value="Getting all students for a course" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1598731400887">
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1598732363708">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1598731400887" />
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1598732363708" />
     <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1598732186360">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
     <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2/0.24.1366.744@0.24.1366.744" timestamp="1598732186360" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598731136010">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598732491790">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.24.1366.744@0.24.1366.744" timestamp="1598731136010" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.24.1366.744@0.24.1366.744" timestamp="1598732491790" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
