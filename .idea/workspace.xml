@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="Added new student profile for lecturers">
-      <change afterPath="$PROJECT_DIR$/course/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/migrations/0002_auto_20210309_1504.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/migrations/0003_remove_attendance_status.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/course/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/templates/attendance_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/attendance_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/templates/view_attendance_by_breakdown_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/view_attendance_by_breakdown_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/templates/view_attendance_by_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/view_attendance_by_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +112,7 @@
       <workItem from="1601054228234" duration="1403000" />
       <workItem from="1615287872152" duration="60000" />
       <workItem from="1615287966532" duration="3616000" />
-      <workItem from="1615319748636" duration="6712000" />
+      <workItem from="1615319748636" duration="6984000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -178,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615298710908</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed major bugs">
+      <created>1615328083400</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1615328083400</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +193,8 @@
     <MESSAGE value="Changed student template to a table" />
     <MESSAGE value="Added new student profile for lecturers" />
     <MESSAGE value="Chanaged attendance to many to many" />
-    <option name="LAST_COMMIT_MESSAGE" value="Chanaged attendance to many to many" />
+    <MESSAGE value="Fixed major bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed major bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -216,7 +216,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/models.py</url>
-          <line>36</line>
+          <line>37</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
