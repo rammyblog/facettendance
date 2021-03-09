@@ -49,9 +49,9 @@
                                         <th data-field="id">Date</th>
                                         <th data-field="code">Course Code</th>
                                         <th data-field="name">Course Name</th>
-                                        <th data-field="students_name">Name</th>
-                                        <th data-field="matric_no">Matric no</th>
-                                        <th data-field="attendance_status">Status</th>
+{#                                        <th data-field="students_name">Name</th>#}
+                                        <th data-field="matric_no">Students present</th>
+{#                                        <th data-field="attendance_status">Status</th>#}
                                         <th data-field="edit_btn">Edit</th>
                                     </tr>
                                     </thead>
@@ -62,14 +62,17 @@
                                             <td>{{ attendance.date_recorded }}</td>
                                             <td>{{ attendance.course.course_code }}</td>
                                             <td>{{ attendance.course.course_name }}</td>
-                                            <td>{{ attendance.student.full_name }}</td>
-                                            <td>{{ attendance.student.matric_no }}</td>
+                                            <td>{% for matric in students_present %} {{ matric }} <br /> {% endfor %}</td>
 
-                                            {% if attendance.attendance_status == 'Present' %}
-                                                <td class="p-3 mb-2 bg-success text-white">{{ attendance.attendance_status }}</td>
-                                            {% else %}
-                                                <td class="p-3 mb-2 bg-danger text-white"> {{ attendance.attendance_status }}</td>
-                                            {% endif %}
+{#                                        {% for student in attendance.student_set.all %}#}
+{#                                            <td>{{ student.full_name }}</td>#}
+{#                                            <td>{{ student.matric_no }}</td>#}
+{#{% endfor %}#}
+{#                                            {% if attendance.attendance_status == 'Present' %}#}
+{#                                                <td class="p-3 mb-2 bg-success text-white">{{ attendance.attendance_status }}</td>#}
+{#                                            {% else %}#}
+{#                                                <td class="p-3 mb-2 bg-danger text-white"> {{ attendance.attendance_status }}</td>#}
+{#                                            {% endif %}#}
 
                                             <td>
                                                 <a class="btn btn-info"

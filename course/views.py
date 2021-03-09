@@ -13,6 +13,7 @@ from django.views.generic.list import ListView
 from accounts.decorator import student_required, teacher_required
 from accounts.models import Lecturer, Student
 from accounts.utils import face_rec_login
+from .forms import AttendanceForm
 from .models import Course, Attendance, StudentCourseRegistration
 
 
@@ -58,10 +59,11 @@ class CourseList(ListView):
     #     context["sudents_registered"] =  StudentCourseRegistration.objects.filter(course_id__in=courses).filter(active=True)
     #     return context
 
+
 @method_decorator([login_required, teacher_required], name='dispatch')
 class StudentProfile(DetailView):
     model = Student
-    template_name='student-profile.html'
+    template_name = 'student-profile.html'
     context_object_name = 'student'
 
     def get_queryset(self, *args, **kwargs):
@@ -164,21 +166,22 @@ def take_attendance(request, course_id):
         images_array.append(student.image.path)
     recgonized_faces_matric_no = face_rec_login(
         images_array, first_names, matric_nos)
+    attendance, _ = Attendance.objects.get_or_create(
+        course=course,
+        date_recorded=datetime.today(),
+        # defaults={'status': True}
+    )
     for matric_no in matric_nos:
         student = get_object_or_404(Student, user__username=matric_no)
         if matric_no in recgonized_faces_matric_no:
-            Attendance.objects.get_or_create(
-                course=course,
-                student=student,
-                date_recorded=datetime.today(),
-                defaults={'status': True}
-            )
-        else:
-            Attendance.objects.get_or_create(
-                course=course,
-                student=student,
-                defaults={'status': False}
-            )
+            attendance.student.add(student)
+            attendance.save()
+        # else:
+        #     Attendance.objects.get_or_create(
+        #         course=course,
+        #         student=student,
+        #         defaults={'status': False}
+        #     )
 
     return redirect(reverse('course:view_attendance', args=(course.id,)))
 
@@ -186,7 +189,7 @@ def take_attendance(request, course_id):
 def attendance_per_course(request, course_id):
     attendance_list = Attendance.objects.filter(course=course_id).order_by(
         'date_recorded').distinct('date_recorded')
-    attendance_present = attendance_list.filter(status=True)
+    # attendance_present = attendance_list.filter(status=True)
 
     context = {
         'attendance_list': attendance_list,
@@ -213,9 +216,10 @@ def attendance_per_course_breakdown(request, attendance_date):
     print(attendance_date)
     attendance_list = Attendance.objects.filter(
         date_recorded__exact=attendance_date)
-
+    students_present = list(attendance_list.values_list('student__user__username', flat=True))
     context = {
         'attendance_list': attendance_list,
+        'students_present':students_present
         # 'attendance_present': len(attendance_present),
         # 'attendance_absent': len(attendance_list) - len(attendance_present)
     }
@@ -225,21 +229,15 @@ def attendance_per_course_breakdown(request, attendance_date):
 @method_decorator([login_required, teacher_required], name='dispatch')
 class AttendanceUpdate(UpdateView):
     model = Attendance
-    fields = ['status']
+    # fields = ['student']
     template_name = 'attendance_edit.html'
+    form_class = AttendanceForm
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form."""
         if not self.success_url:
             return reverse_lazy('course:view_attendance_breakdown',
                                 kwargs={'attendance_date': self.object.date_recorded})
-
-    def get_context_data(self, **kwargs):
-        context = super(AttendanceUpdate, self).get_context_data(**kwargs)
-        context['name'] = self.object.student.full_name
-        context['matric_no'] = self.object.student.matric_no
-
-        return context
 
 
 def calculate_percentage_of_attendance(request, course_id):
