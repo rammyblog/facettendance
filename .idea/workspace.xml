@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/course/templates/student-profile.html" afterDir="false" />
+    <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="Added new student profile for lecturers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/templates/all-students.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/all-students.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../africaCdi" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -103,7 +102,11 @@
       <workItem from="1588273676387" duration="135000" />
       <workItem from="1597630385612" duration="9213000" />
       <workItem from="1597946737224" duration="501000" />
-      <workItem from="1598730385745" duration="3181000" />
+      <workItem from="1598730385745" duration="4016000" />
+      <workItem from="1598882811764" duration="63000" />
+      <workItem from="1601054228234" duration="1403000" />
+      <workItem from="1615287872152" duration="60000" />
+      <workItem from="1615287966532" duration="1601000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -147,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598732752787</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added new student profile for lecturers">
+      <created>1598733720761</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1598733720761</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,17 +171,22 @@
     <MESSAGE value="Fixed all students template for lecturers" />
     <MESSAGE value="Getting all students for a course" />
     <MESSAGE value="Changed student template to a table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed student template to a table" />
+    <MESSAGE value="Added new student profile for lecturers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new student profile for lecturers" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1598732752430">
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2" timestamp="1601064603330">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1598732752430" />
-    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1598732186360">
+    <state x="222" y="24" width="912" height="744" key="CommitChangelistDialog2/0.24.1366.744@0.24.1366.744" timestamp="1601064603330" />
+    <state x="466" y="154" width="424" height="485" key="FileChooserDialogImpl" timestamp="1598882872154">
       <screen x="0" y="24" width="1366" height="744" />
     </state>
-    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2/0.24.1366.744@0.24.1366.744" timestamp="1598732186360" />
+    <state x="466" y="154" width="424" height="485" key="FileChooserDialogImpl/0.24.1366.744@0.24.1366.744" timestamp="1598882872154" />
+    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1598733729827">
+      <screen x="0" y="24" width="1366" height="744" />
+    </state>
+    <state x="278" y="128" width="800" height="537" key="Vcs.Push.Dialog.v2/0.24.1366.744@0.24.1366.744" timestamp="1598733729827" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598732491790">
       <screen x="0" y="24" width="1366" height="744" />
     </state>

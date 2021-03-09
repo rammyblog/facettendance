@@ -157,15 +157,15 @@ def take_attendance(request, course_id):
         active=True).values_list('student')
     students = Student.objects.filter(
         pk__in=student_registered_for_course).filter(image__isnull=False)
-    first_names = list(students.values_list('first_name', flat=True))
-    matric_nos = list(students.values_list('matric_no', flat=True))
+    first_names = list(students.values_list('user__first_name', flat=True))
+    matric_nos = list(students.values_list('user__username', flat=True))
     images_array = []
     for student in students:
         images_array.append(student.image.path)
     recgonized_faces_matric_no = face_rec_login(
         images_array, first_names, matric_nos)
     for matric_no in matric_nos:
-        student = get_object_or_404(Student, matric_no=matric_no)
+        student = get_object_or_404(Student, user__username=matric_no)
         if matric_no in recgonized_faces_matric_no:
             Attendance.objects.get_or_create(
                 course=course,

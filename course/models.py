@@ -37,7 +37,7 @@ class StudentCourseRegistration(models.Model):
 
 class Attendance(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ManyToManyField(Student)
     status = models.BooleanField(default=False)
     date_recorded = models.DateField(auto_now_add=True)
 
@@ -58,7 +58,7 @@ class Attendance(models.Model):
         status = 'Absent'
         if self.status:
             status = 'Present'
-        return f"{self.student.first_name} was {status}"
+        return f"{self.student.user.first_name} was {status}"
 
     @property
     def student_attendance(self):

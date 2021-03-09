@@ -126,6 +126,7 @@ def face_rec_login(image_urls, usernames, matric_nos, student_login=False):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             video_capture.release()
             cv2.destroyAllWindows()
+            print(recgonized_faces_matric_no)
             return recgonized_faces_matric_no
         
         if student_login and face_auth:
