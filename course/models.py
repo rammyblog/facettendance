@@ -22,8 +22,8 @@ class Course(models.Model):
     @property
     def total_students_for_course(self):
         cr = Course.objects.get(id=self.id)
-        att_class = list(cr.studentcourseregistration_set.filter(active=True).values_list('student__id', flat=True))
-        return Student.objects.filter(user__id__in=att_class)
+        att_class = list(cr.studentcourseregistration_set.filter(active=True).values_list('student__user_id', flat=True))
+        return Student.objects.filter(user_id__in=att_class)
         # return att_class
 
     @property

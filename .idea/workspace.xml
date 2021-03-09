@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +113,7 @@
       <workItem from="1601054228234" duration="1403000" />
       <workItem from="1615287872152" duration="60000" />
       <workItem from="1615287966532" duration="3616000" />
-      <workItem from="1615319748636" duration="6984000" />
+      <workItem from="1615319748636" duration="7045000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -177,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615328083400</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fixed major bugs">
+      <created>1615328346479</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615328346479</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
