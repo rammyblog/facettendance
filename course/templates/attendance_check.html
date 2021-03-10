@@ -63,7 +63,7 @@
                                     {% for student, attendance in students_obj.items %}
                                         <tr>
                                             <td></td>
-                                            <td>{{ student.user.full_name }}</td>
+                                            <td>{{ student.user.first_name  }} {{ student.user.last_name }}</td>
                                             <td>{{ student.user }}</td>
                                             {% for mark in attendance %}
                                                 {% if forloop.last %}

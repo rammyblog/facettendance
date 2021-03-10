@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.datastructures import MultiValueDictKeyError
@@ -188,10 +187,11 @@ def take_attendance(request, course_id):
 
 
 def attendance_per_course(request, course_id):
-    attendance_list = Attendance.objects.filter(course=course_id).order_by(
-        'date_recorded').distinct('date_recorded')
+    # attendance_list = Attendance.objects.filter(course=course_id).order_by(
+    #     'date_recorded').distinct('date_recorded')
     # attendance_present = attendance_list.filter(status=True)
-
+    attendance_list = Attendance.objects.filter(course=course_id).order_by(
+        'date_recorded')
     context = {
         'attendance_list': attendance_list,
     }
@@ -244,27 +244,34 @@ class AttendanceUpdate(UpdateView):
 def calculate_percentage_of_attendance(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     # Gives everyone registered
-    total_registered_students = StudentCourseRegistration.objects.filter(course_id=course_id)
-    total_attendance_list = Attendance.objects.filter(course=course_id).order_by('student__user_id').distinct(
-        'student__user_id')
-    all_attendance = list(Attendance.objects.filter(course=course_id).order_by('date_recorded').distinct('date_recorded').values_list('student', flat=True))
-    # test = Attendance.objects.annotate(Count('student'))
-    # print(test)
+    total_registered_students = StudentCourseRegistration.objects.filter(course_id=course_id, active=True)
+    total_attendance_list = Attendance.objects.filter(course=course_id).count()
+    all_attendance = list(
+        Attendance.objects.filter(course=course_id).order_by('date_recorded').values_list(
+            'student',flat=True))
+
+    # Slow and should be left out of views, but I am too lazy and IDGAF for now
+    # This is meant to iterate over every student that registered for the course then iterate over every attendance
+    # taken, since I only got the student value list, it gives me the id of each student, so if that id(attendance)
+    # If that id matches the student, it means the student attended the class.
+    print(all_attendance)
+
     students_obj = {}
-    total_class_attended = 0
+    # total_class_attended = 0
     for single_student in total_registered_students:
-        for attendance in all_attendance:
-            print(attendance)
-            if attendance == single_student.student.user_id:
-                total_class_attended += 1
-        total_class_missed = len(all_attendance) - total_class_attended
-        attendance_percent = round(total_class_attended / len(all_attendance) * 100, 2)
+        # for attendance in all_attendance:
+        #     print(attendance, single_student.student.user_id)
+        #     if attendance == single_student.student.user_id:
+        #         total_class_attended += 1
+        total_class_attended = all_attendance.count(single_student.student.user_id)
+        total_class_missed = total_attendance_list - total_class_attended
+        attendance_percent = round(total_class_attended / total_attendance_list * 100, 2)
         students_obj[single_student.student] = [total_class_attended, total_class_missed, attendance_percent]
         total_class_attended = 0
-    # print(test)
+    print(students_obj)
     return render(request, 'attendance_check.html', context={
-        'total_attendance_list': total_attendance_list,
+        # 'total_attendance_list': total_attendance_list,
         'all_attendance': all_attendance,
         'course': course,
-        'students_obj':students_obj
+        'students_obj': students_obj
     })

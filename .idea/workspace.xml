@@ -114,7 +114,7 @@
       <workItem from="1601054228234" duration="1403000" />
       <workItem from="1615287872152" duration="60000" />
       <workItem from="1615287966532" duration="3616000" />
-      <workItem from="1615319748636" duration="10804000" />
+      <workItem from="1615319748636" duration="12769000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -193,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615328479628</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="worked on grading">
+      <created>1615334590979</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1615334590979</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +217,8 @@
     <MESSAGE value="Added new student profile for lecturers" />
     <MESSAGE value="Chanaged attendance to many to many" />
     <MESSAGE value="Fixed major bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed major bugs" />
+    <MESSAGE value="worked on grading" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on grading" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -222,7 +230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>189</line>
+          <line>188</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
