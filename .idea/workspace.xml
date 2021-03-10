@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="22675373-19b4-4463-b965-50921d5035dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/templates/attendance_check.html" beforeDir="false" afterPath="$PROJECT_DIR$/course/templates/attendance_check.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/course/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +114,7 @@
       <workItem from="1601054228234" duration="1403000" />
       <workItem from="1615287872152" duration="60000" />
       <workItem from="1615287966532" duration="3616000" />
-      <workItem from="1615319748636" duration="7045000" />
+      <workItem from="1615319748636" duration="10804000" />
     </task>
     <task id="LOCAL-00001" summary="Prepare for heroku">
       <created>1597632023859</created>
@@ -185,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615328346479</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed major bugs">
+      <created>1615328479628</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615328479628</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,12 +222,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>188</line>
+          <line>189</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/course/views.py</url>
-          <line>229</line>
+          <line>230</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

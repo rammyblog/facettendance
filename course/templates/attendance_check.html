@@ -24,8 +24,10 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Attendance <span class="table-project-n">Records</span> Table Breakdown for {{course.course_name }} ({{ course.course_code }})</h1>
-                                 <h1>A total of <span class="table-project-n">{{all_attendance | length}}</span> classes was taken attended for using this software</h1>
+                                <h1>Attendance <span class="table-project-n">Records</span> Table Breakdown
+                                    for {{ course.course_name }} ({{ course.course_code }})</h1>
+                                <h1>A total of <span class="table-project-n">{{ all_attendance | length }}</span>
+                                    classes was taken attended for using this software</h1>
 
                             </div>
                         </div>
@@ -48,8 +50,8 @@
                                     <tr>
                                         <th data-field="state" data-checkbox="true"></th>
 
-                                        <th data-field="code">Course Code</th>
-                                        <th data-field="name">Course Name</th>
+                                        {#                                        <th data-field="code">Course Code</th>#}
+                                        {#                                        <th data-field="name">Course Name</th>#}
                                         <th data-field="students_name">Name</th>
                                         <th data-field="matric_no">Matric no</th>
                                         <th data-field="present">Attended</th>
@@ -58,20 +60,29 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for attendance in total_attendance_list %}
+                                    {% for student, attendance in students_obj.items %}
                                         <tr>
                                             <td></td>
-                                            <td>{{ attendance.course.course_code }}</td>
-                                            <td>{{ attendance.course.course_name }}</td>
-                                            <td>{{ attendance.student.full_name }}</td>
-                                            <td>{{ attendance.student.matric_no }}</td>
-                                            <td>{{ attendance.total_attended }}</td>
-                                            <td>{{ attendance.total_absent }}</td>
-                                            {% if attendance.attendance > 75 %}
-                                                <td class="p-3 mb-2 bg-success text-white">{{ attendance.student_attendance }}</td>
-                                            {% else %}
-                                                <td class="p-3 mb-2 bg-danger text-white"> {{ attendance.student_attendance }}</td>
-                                            {% endif %}
+                                            <td>{{ student.user.full_name }}</td>
+                                            <td>{{ student.user }}</td>
+                                            {% for mark in attendance %}
+                                                {% if forloop.last %}
+                                                    {% if mark > 75 %}
+                                                        <td class="p-3 mb-2 bg-success text-white">{{ mark }}</td>
+                                                    {% else %}
+                                                        <td class="p-3 mb-2 bg-danger text-white"> {{ mark }}</td>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <td> {{ mark }}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {#                                            <td>{{ attendance }}</td>#}
+{#                                            {% if attendance.attendance > 75 %}#}
+{#                                                <td class="p-3 mb-2 bg-success text-white">{{ attendance.student_attendance }}</td>#}
+{#                                            {% else %}#}
+{#                                                <td class="p-3 mb-2 bg-danger text-white"> {{ attendance.student_attendance }}</td>#}
+{#                                            {% endif %}#}
 
 
                                         </tr>

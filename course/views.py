@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.datastructures import MultiValueDictKeyError
@@ -219,7 +220,7 @@ def attendance_per_course_breakdown(request, attendance_date):
     students_present = list(attendance_list.values_list('student__user__username', flat=True))
     context = {
         'attendance_list': attendance_list,
-        'students_present':students_present
+        'students_present': students_present
         # 'attendance_present': len(attendance_present),
         # 'attendance_absent': len(attendance_list) - len(attendance_present)
     }
@@ -242,13 +243,28 @@ class AttendanceUpdate(UpdateView):
 
 def calculate_percentage_of_attendance(request, course_id):
     course = get_object_or_404(Course, id=course_id)
-    total_attendance_list = Attendance.objects.filter(course=course_id).order_by('student_id').filter(
-        status=True).distinct('student_id')
-    all_attendance = Attendance.objects.filter(course=course_id).order_by('date_recorded').filter(
-        status=True).distinct('date_recorded')
-
+    # Gives everyone registered
+    total_registered_students = StudentCourseRegistration.objects.filter(course_id=course_id)
+    total_attendance_list = Attendance.objects.filter(course=course_id).order_by('student__user_id').distinct(
+        'student__user_id')
+    all_attendance = list(Attendance.objects.filter(course=course_id).order_by('date_recorded').distinct('date_recorded').values_list('student', flat=True))
+    # test = Attendance.objects.annotate(Count('student'))
+    # print(test)
+    students_obj = {}
+    total_class_attended = 0
+    for single_student in total_registered_students:
+        for attendance in all_attendance:
+            print(attendance)
+            if attendance == single_student.student.user_id:
+                total_class_attended += 1
+        total_class_missed = len(all_attendance) - total_class_attended
+        attendance_percent = round(total_class_attended / len(all_attendance) * 100, 2)
+        students_obj[single_student.student] = [total_class_attended, total_class_missed, attendance_percent]
+        total_class_attended = 0
+    # print(test)
     return render(request, 'attendance_check.html', context={
         'total_attendance_list': total_attendance_list,
         'all_attendance': all_attendance,
-        'course': course
+        'course': course,
+        'students_obj':students_obj
     })
