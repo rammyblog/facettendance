@@ -1345,6 +1345,7 @@ ul.tab-custon-design, ul.tab-review-design {
 }
 .address-hr.biography{
 	text-align:left;
+	word-wrap: break-word;
 }
 .address-hr a{
 	font-size:20px;
@@ -4733,4 +4734,8 @@ div#sparklinehome canvas {
 	align-items: center;
 	width: 100%;
 	min-height: 100vh;
+}
+
+.font-large{
+	font-size: 2rem;
 }

@@ -19,7 +19,18 @@ from .models import Course, Attendance, StudentCourseRegistration
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    # lecturer = Lecturer.objects.get(user=request.user)
+    context = {}
+    if request.user.lecturer:
+        courses = Course.objects.filter(lecturer__user=request.user).count()
+        attendances = Attendance.objects.filter(course__lecturer__user=request.user).count()
+        students = StudentCourseRegistration.objects.filter(course__lecturer__user=request.user).count()
+        context = {
+            'courses': courses,
+            'attendances': attendances,
+            'students': students
+        }
+    return render(request, 'dashboard.html', context)
 
 
 @login_required
