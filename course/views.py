@@ -213,10 +213,10 @@ def student_attendance_per_course(request, course_id):
     return render(request, 's', context)
 
 
-def attendance_per_course_breakdown(request, attendance_date):
+def attendance_per_course_breakdown(request, course_id, attendance_date):
     print(attendance_date)
-    attendance_list = Attendance.objects.filter(
-        date_recorded__exact=attendance_date)
+    attendance_list = Attendance.objects.filter(course_id=course_id,
+                                                date_recorded__exact=attendance_date)
     students_present = list(attendance_list.values_list('student__user__username', flat=True))
     context = {
         'attendance_list': attendance_list,
@@ -248,7 +248,7 @@ def calculate_percentage_of_attendance(request, course_id):
     total_attendance_list = Attendance.objects.filter(course=course_id).count()
     all_attendance = list(
         Attendance.objects.filter(course=course_id).order_by('date_recorded').values_list(
-            'student',flat=True))
+            'student', flat=True))
 
     # Slow and should be left out of views, but I am too lazy and IDGAF for now
     # This is meant to iterate over every student that registered for the course then iterate over every attendance

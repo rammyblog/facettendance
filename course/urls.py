@@ -25,7 +25,7 @@ urlpatterns = [
          attendance_per_course, name='view_attendance'),
     path('view-attendance/marks/<int:course_id>',
          calculate_percentage_of_attendance, name='view_attendance_marks'),
-    path('view-attendance-breakdown/<slug:attendance_date>', attendance_per_course_breakdown,
+    path('view-attendance-breakdown/<int:course_id>/<slug:attendance_date>', attendance_per_course_breakdown,
          name='view_attendance_breakdown')
 
 

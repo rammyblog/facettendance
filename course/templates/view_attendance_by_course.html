@@ -69,7 +69,7 @@
                                             <td>{{ attendance.total_present_per_class }}</td>
                                             <td>{{ attendance.total_student_absent_per_class }} </td>
                                             <td><a class="btn btn-info"
-                                                   href="{% url 'course:view_attendance_breakdown' attendance.date_recorded %}">View
+                                                   href="{% url 'course:view_attendance_breakdown' attendance.course.pk  attendance.date_recorded %}">View
                                                 Breakdown</a></td>
 
 
