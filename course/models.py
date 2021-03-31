@@ -22,7 +22,8 @@ class Course(models.Model):
     @property
     def total_students_for_course(self):
         cr = Course.objects.get(id=self.id)
-        att_class = list(cr.studentcourseregistration_set.filter(active=True).values_list('student__user_id', flat=True))
+        att_class = list(
+            cr.studentcourseregistration_set.filter(active=True).values_list('student__user_id', flat=True))
         return Student.objects.filter(user_id__in=att_class)
         # return att_class
 
@@ -31,8 +32,6 @@ class Course(models.Model):
         cr = Course.objects.get(id=self.id)
         att_class = cr.studentcourseregistration_set.filter(active=True).count()
         return att_class
-
-
 
 
 class StudentCourseRegistration(models.Model):
@@ -107,8 +106,6 @@ class Attendance(models.Model):
 
         return self.student.count()
 
-
     @property
     def total_student_absent_per_class(self):
         return self.course.total_students - self.total_present_per_class
-

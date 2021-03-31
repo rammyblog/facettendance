@@ -22,6 +22,22 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 
+@login_required
+def lecturer_dashboard(request):
+    # lecturer = Lecturer.objects.get(user=request.user)
+    context = {}
+    if request.user.lecturer:
+        courses = Course.objects.filter(lecturer__user=request.user).count()
+        attendances = Attendance.objects.filter(course__lecturer=request.user).count()
+        students = StudentCourseRegistration.objects.filter(course__lecturer=request.user).count()
+        context = {
+            'courses': courses,
+            'attendances': attendances,
+            'students': students
+        }
+    return render(request, 'dashboard.html', context)
+
+
 @method_decorator([login_required, teacher_required], name='dispatch')
 class CreateCourse(CreateView):
     model = Course
@@ -198,6 +214,7 @@ def attendance_per_course(request, course_id):
     return render(request, 'view_attendance_by_course.html', context)
 
 
+# What the fuck is going on here
 def student_attendance_per_course(request, course_id):
     attendance_list = Attendance.objects.filter(course=course_id).order_by(
         'date_recorded').distinct('date_recorded')
